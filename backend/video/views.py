@@ -78,7 +78,15 @@ class Videos(viewsets.ViewSet):
         queryset = Video.objects.filter(owner=request.user)
         serializer = VideoSerializer(queryset,many=True, context={'request': request})
         return Response ({
-            "message" : 'this is videos',
+            "message" : 'this are videos',
+            "data" : serializer.data,
+        }, status=status.HTTP_200_OK)
+    
+    def User_list(self,request):
+        queryset = Video.objects.all()
+        serializer = VideoSerializer(queryset,many=True, context={'request': request})
+        return Response ({
+            "message" : 'this are your videos',
             "data" : serializer.data,
         }, status=status.HTTP_200_OK)
     
